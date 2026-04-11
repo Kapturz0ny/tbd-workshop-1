@@ -40,6 +40,22 @@ resource "google_storage_bucket" "dataproc_staging" {
   versioning {
     enabled = true
   }
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      age = 30
+    }
+  }
+  lifecycle_rule {
+    action {
+      type = "AbortIncompleteMultipartUpload"
+    }
+    condition {
+      age = 7
+    }
+  }
 }
 
 resource "google_storage_bucket" "dataproc_temp" {
@@ -52,6 +68,22 @@ resource "google_storage_bucket" "dataproc_temp" {
 
   versioning {
     enabled = true
+  }
+  lifecycle_rule {
+    action {
+      type = "Delete"
+    }
+    condition {
+      age = 30
+    }
+  }
+  lifecycle_rule {
+    action {
+      type = "AbortIncompleteMultipartUpload"
+    }
+    condition {
+      age = 7
+    }
   }
 }
 
