@@ -99,6 +99,10 @@ resource "google_storage_bucket_iam_member" "temp_bucket_iam" {
   member = "serviceAccount:${google_service_account.dataproc_sa.email}"
 }
 
+data "google_compute_subnetwork" "dataproc_subnet" {
+  self_link = var.subnet
+}
+
 resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
   #checkov:skip=CKV_GCP_91: "Ensure Dataproc cluster is encrypted with Customer Supplied Encryption Keys (CSEK)"
   depends_on = [
@@ -134,7 +138,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     }
 
     gce_cluster_config {
-      subnetwork             = var.subnet
+      subnetwork             = data.google_compute_subnetwork.dataproc_subnet.id
       internal_ip_only       = true
       service_account        = google_service_account.dataproc_sa.email
       service_account_scopes = ["cloud-platform"]
