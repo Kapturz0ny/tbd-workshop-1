@@ -165,6 +165,7 @@ jobs:
         infracost diff --path="." \
                         --format=json \
                         --usage-file infracost-usage.yml \
+                        --terraform-var-file env/project.tfvars \
                         --compare-to=/tmp/infracost-base.json \
                         --out-file=/tmp/infracost.json
     - name: Post Infracost comment

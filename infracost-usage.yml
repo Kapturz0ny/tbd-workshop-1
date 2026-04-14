@@ -13,5 +13,4 @@ resource_type_default_usage:
     monthly_class_b_operations: 100000
     monthly_data_retrieval_gb: 5
     monthly_egress_data_transfer_gb:
-      same_continent: 10
-      worldwide: 1
+      europe_west1: 10
