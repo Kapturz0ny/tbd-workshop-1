@@ -180,3 +180,4 @@ Hint: use the existing `.github/workflows/destroy.yml` as a starting point.
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
 ***write one sentence why scheduling cleanup helps in this workshop***
+
